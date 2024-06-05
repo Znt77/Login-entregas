@@ -1,10 +1,12 @@
 const express = require('express');
-const router = express.Router();
+const authRoutes = require('./auth');
+const passport = require('../config/passport');
 
-// Página principal
+const router = express.Router();
+router.use('/api/sessions', authRoutes);
+
 router.get('/', (req, res) => res.render('welcome'));
 
-// Dashboard
 router.get('/dashboard', (req, res) => 
   res.render('dashboard', { user: req.user })
 );
